@@ -53,7 +53,7 @@ public class caipiaoServlet extends HttpServlet {
 			MethodBean mb = (MethodBean) map.get("bean");
 			System.out.println(ONElist.toString());
 			RecordBean rb = new RecordBean();
-			rb.setONElist(ONElist.toString());
+			rb.setONElist(ONElist);
 			rb.setMethodBean(mb);
 			if("bj11x5".equals(cpCode)){
 				records_bj.put(String.valueOf(Integer.valueOf(list.get(0).getExpect())+1), rb);
@@ -67,6 +67,15 @@ public class caipiaoServlet extends HttpServlet {
 				System.out.println(records_bj);
 				for(CaipiaoBean cb:list){
 					cb.setRecordBean(records_bj.get(cb.getExpect()));
+					String tmpONEstr = cb.getOpenCode().substring(0, 2);//开奖首位号码
+					int tmpONE = Integer.valueOf(tmpONEstr);
+					if(null != cb.getRecordBean()){
+						List<Integer> tmplist = cb.getRecordBean().getONElist();
+						if(tmplist.contains(tmpONE)){
+							String redOpenCode ="<font color='red'>"+tmpONEstr+"</font>"+cb.getOpenCode().substring(2);
+							cb.setOpenCode(redOpenCode);
+						}
+					}
 				}
 			}else if("sh11x5".equals(cpCode)){
 				records_sh.put(String.valueOf(Integer.valueOf(list.get(0).getExpect())+1), rb);
@@ -79,19 +88,16 @@ public class caipiaoServlet extends HttpServlet {
 				}
 				System.out.println(records_sh);
 				for(CaipiaoBean cb:list){
-					RecordBean tmpRB = records_sh.get(cb.getExpect());
-//					String tmpONE = tmpRB.getONElist();
-//					String[] tmpArr = tmpONE.substring(1, tmpONE.length()-1).split(",");
-//					for(String tmpStr:tmpArr){
-//						if(Integer.parseInt(cb.getOpenCode().substring(0, 2))==Integer.parseInt(tmpStr)){
-//							
-//							break;
-//						}
-//					}
-//					if(tmpONE.contains(Integer.valueOf(cb.getOpenCode().substring(0, 2)).toString())){
-//						
-//					}
-					cb.setRecordBean(tmpRB);
+					cb.setRecordBean(records_sh.get(cb.getExpect()));
+					String tmpONEstr = cb.getOpenCode().substring(0, 2);//开奖首位号码
+					int tmpONE = Integer.valueOf(tmpONEstr);
+					if(null != cb.getRecordBean()){
+						List<Integer> tmplist = cb.getRecordBean().getONElist();
+						if(tmplist.contains(tmpONE)){
+							String redOpenCode ="<font color='red'>"+tmpONEstr+"</font>"+cb.getOpenCode().substring(2);
+							cb.setOpenCode(redOpenCode);
+						}
+					}
 				}
 			}
 			

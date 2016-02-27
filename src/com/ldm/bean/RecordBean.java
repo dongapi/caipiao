@@ -1,21 +1,22 @@
 package com.ldm.bean;
 
+import java.util.List;
+
 public class RecordBean {
 	
 	private MethodBean methodBean;
-	private String ONElist;
+	private List<Integer> ONElist;
 	public MethodBean getMethodBean() {
 		return methodBean;
 	}
 	public void setMethodBean(MethodBean methodBean) {
 		this.methodBean = methodBean;
 	}
-	public String getONElist() {
+	public List<Integer> getONElist() {
 		return ONElist;
 	}
-	public void setONElist(String oNElist) {
+	public void setONElist(List<Integer> oNElist) {
 		ONElist = oNElist;
 	}
-	
 
 }

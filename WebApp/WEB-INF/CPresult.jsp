@@ -62,7 +62,7 @@ function rflash(){
 		<c:forEach items="${list}" var="cp">
 			<tr >
 				<td align="center"><c:out value="${cp.expect}"/></td>
-				<td align="center"><c:out value="${cp.openCode}"/></td>
+				<td align="center">${cp.openCode}</td>
 				<td align="center"><c:out value="${cp.recordBean.methodBean.meth1}"/></td>
 				<td align="center"><c:out value="${cp.recordBean.methodBean.meth2}"/></td>
 				<td align="center"><c:out value="${cp.recordBean.methodBean.meth3}"/></td>
