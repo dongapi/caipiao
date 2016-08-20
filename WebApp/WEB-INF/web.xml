@@ -3,11 +3,19 @@
   <display-name>caipiao</display-name>
   <servlet>
   	<servlet-name>play5in11</servlet-name>
-  	<servlet-class>com.ldm.servlet.caipiaoServlet</servlet-class>
+  	<servlet-class>com.ldm.servlet.Caipiao11_5_Servlet</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>play5in11</servlet-name>
-  	<url-pattern>/queryCp</url-pattern>
+  	<url-pattern>/query11_5</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>play3D</servlet-name>
+  	<servlet-class>com.ldm.servlet.Caipiao_3D_Servlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>play3D</servlet-name>
+  	<url-pattern>/query3D</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>

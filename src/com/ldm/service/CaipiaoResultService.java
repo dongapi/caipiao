@@ -51,7 +51,7 @@ public class CaipiaoResultService {
 	
 	public static void main(String[] args) {
 		String httpUrl = "http://apis.baidu.com/apistore/lottery/lotteryquery";
-		String httpArg = "lotterycode=bj11x5&recordcnt=20";
+		String httpArg = "lotterycode=fc3d&recordcnt=20";
 		String jsonResult = request(httpUrl, httpArg);
 		CaipiaoResultBean crb = JSON.parseObject(jsonResult,CaipiaoResultBean.class);
 		for(CaipiaoBean cb:crb.getRetData().getData()){

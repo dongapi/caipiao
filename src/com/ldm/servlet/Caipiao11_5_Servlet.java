@@ -21,11 +21,11 @@ import com.ldm.service.CaipiaoResultService;
 import com.ldm.util.CP_bj11x5;
 
 
-public class caipiaoServlet extends HttpServlet {
+public class Caipiao11_5_Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private static Map<String, RecordBean> records_bj = new HashMap<String, RecordBean>();
     private static Map<String, RecordBean> records_sh = new HashMap<String, RecordBean>();
-    public caipiaoServlet() {
+    public Caipiao11_5_Servlet() {
         super();
     }
 

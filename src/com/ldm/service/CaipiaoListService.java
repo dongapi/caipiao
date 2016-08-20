@@ -53,7 +53,7 @@ public class CaipiaoListService {
 	public static void main(String[] args) {
 
 		String httpUrl = "http://apis.baidu.com/apistore/lottery/lotterylist";
-		String httpArg = "lotterytype=2";
+		String httpArg = "lotterytype=1";
 		String jsonResult = request(httpUrl, httpArg);
 		System.out.println(jsonResult);
 	}

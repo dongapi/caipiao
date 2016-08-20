@@ -1,4 +1,4 @@
-package luckymoney;
+package com.ldm.util;
 
 /**
   * @ClassName: EliminationUtils
