@@ -19,9 +19,9 @@ $(function(){
 </script>
 </head>
 <body>
-<a id="bj11x5" href="<%=basepath%>/query11_5?cpCode=bj11x5" target="_blank">查询北京11选5开奖结果</a> |
-<a id="sh11x5" href="<%=basepath%>/query11_5?cpCode=sh11x5" target="_blank">查询上海11选5开奖结果</a> |
-<a id="3d" href="<%=basepath%>/query3D?cpCode=fc3d" target="_blank">查询3D开奖结果</a>
+<%-- <a id="bj11x5" href="<%=basepath%>/query11_5?cpCode=bj11x5" target="_blank">查询北京11选5开奖结果</a> | --%>
+<%-- <a id="sh11x5" href="<%=basepath%>/query11_5?cpCode=sh11x5" target="_blank">查询上海11选5开奖结果</a> | --%>
+<a id="3d" href="<%=basepath%>/query3D?cpCode=fc3d" target="_blank">福彩3D开奖结果</a>
 
 </body>
 </html>
