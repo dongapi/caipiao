@@ -19,6 +19,8 @@ import java.util.Set;
  */
 public class CommonUtils {
 
+	private static String[] allNum = {"0","1","2","3","4","5","6","7","8","9"};
+	
 	public static int maxNum(int a,int b ,int c){
 		
 		return  a>b?a>c?a:c:b>c?b:c;
@@ -131,32 +133,32 @@ public class CommonUtils {
 		 //List<String> temp =intersect( intersect(result1,result2).toArray(),result3);
 		 return step2;
 	 }
-	 
+	 //根据对码生成60注号码
 	 public static List<String> association(String[] arr1,String[] arr2){
 		 List<String> associations = new ArrayList<>();
-		 for(String str : arr1){
-			 for(int i=0;i<arr2.length;i++){ 
-				 if((i+1)==arr2.length){
-					 associations.add(str+arr2[i]+arr2[0]);
-				 }else{
-					 associations.add(str+arr2[i]+arr2[i+1]);
+		 System.out.println(arr1.length);
+		 if(arr1.length==6){
+			 for(int j=0;j<=arr1.length-1;j++ ){
+				 for(int k=j+1;k<=arr1.length-1;k++)
+				 {
+					 for(int i=0;i<arr2.length;i++){ 
+								 associations.add(arr1[j]+arr1[k]+arr2[i]);
+						 }
 				 }
-				 
 			 }
-		 }
-		 
-		 for(String str : arr2){
-			 for(int i=0;i<arr1.length;i++){ 
-				 if((i+1)==arr1.length){
-					 associations.add(str+arr1[i]+arr1[0]);
-				 }else{
-					 associations.add(str+arr1[i]+arr1[i+1]);
+		 }else{
+			 for(int j=0;j<arr2.length-1;j++ ){
+				 for(int k=j+1;k<=arr2.length-1;k++)
+				 { 
+				 for(int i=0;i<arr1.length;i++){ 
+						 associations.add(arr2[j]+arr2[k]+arr1[i]);
 				 }
-				 
+				 }
 			 }
 		 }
 		 return associations;
 	 }
+	 
 	 public static String[] getDuiMaHaoByOne(int a){
 		 List<String> result = new ArrayList<String>();
 		 if(a == 0||a == 5){
@@ -194,7 +196,6 @@ public class CommonUtils {
 		 return result;
 	 }
 	 public static void main(String[] args) {
-		 String[] allNum = {"0","1","2","3","4","5","6","7","8","9"};
 		 String[] result = getDuiMaHao(8,6,9);
 		 String[] minus = minus(allNum,result);
 		 List<String> last =  association(result , minus);
