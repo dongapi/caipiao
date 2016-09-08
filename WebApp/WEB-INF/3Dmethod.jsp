@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="<%=basepath%>/js/jquery-1.6.2.js"></script>
-<title>福彩3D推荐号码组合</title>
+<title>福彩3D方法排除明细</title>
 </head>
 <body>
 <div style="width: 1200px">
@@ -21,21 +21,25 @@
 				<td align="center" >百位推荐号码</td>
 				<td align="center" >十位推荐号码</td>
 				<td align="center" >个位推荐号码</td>
-				<td align="center" width="600px">全部号码组合</td>
-				<td align="center" >组合数量合计</td>
+				<td align="center" >大底参考</td>
+<!-- 				<td align="center" >全部号码组合</td> -->
+<!-- 				<td align="center" >组合数量合计</td> -->
 			</tr>
 		</thead>
 			<tr>
 				<td align="center">本期</td>
 				<td align="center">未开奖</td>
-				<td align="center"><c:out value="${baiWei}"/></td>
-				<td align="center"><c:out value="${shiWei}"/></td>
-				<td align="center"><c:out value="${geWei}"/></td>
-				<td style="word-break:break-all"><c:out value="${zuhe}"/></td>
-				<td align="center"><c:out value="${count}"/></td>
+				<td align="center" title="${baiMsg}"><c:out value="${baiWei}"/></td>
+				<td align="center" title="${shiMsg}"><c:out value="${shiWei}"/></td>
+				<td align="center" title="${geMsg}"><c:out value="${geWei}"/></td>
+				<td align="center">
+				百位：<c:out value="${daDi.baiWei}"/><br/>
+				十位：<c:out value="${daDi.shiWei}"/><br/>
+				个位：<c:out value="${daDi.geWei}"/>
+				</td>
+<%-- 				<td style="word-break:break-all"><c:out value="${zuhe}"/></td> --%>
+<%-- 				<td align="center"><c:out value="${count}"/></td> --%>
 			</tr>
-		<c:if test="${fn:substring(list[0].expect,8,10) != 85 }">
-		</c:if>
 		<c:forEach items="${list}" var="cp">
 			<tr >
 				<td align="center"><c:out value="${cp.expect}"/></td>
@@ -45,6 +49,8 @@
 				<td align="center" title="${cp.historyBean_3D.geMsg}">${cp.historyBean_3D.geCode}</td>
 			</tr>
 		</c:forEach>
+		<c:if test="${fn:substring(list[0].expect,8,10) != 85 }">
+		</c:if>
 	</table>
 </div>
 </body>
