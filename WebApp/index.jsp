@@ -23,8 +23,9 @@ $(function(){
 <a id="bj11x5" href="<%=basepath%>/query11_5?cpCode=bj11x5" target="_blank">查询北京11选5开奖结果</a> |
 <a id="sh11x5" href="<%=basepath%>/query11_5?cpCode=sh11x5" target="_blank">查询上海11选5开奖结果</a> <br/>
 <h3 style="color: red;">福彩3D：</h3>
-<a id="3d" href="<%=basepath%>/query3D?cpCode=fc3d" target="_blank">福彩3D开奖结果(推荐号码组合)</a> |
-<a id="3d" href="<%=basepath%>/query3D?cpCode=fc3d&flg=mtd" target="_blank">福彩3D开奖结果(方法排除明细)</a>
+<a id="3d" href="<%=basepath%>/query3D?cpCode=fc3d" target="_blank">福彩3D(单选推荐)</a> |
+<%-- <a id="3d" href="<%=basepath%>/query3D?cpCode=fc3d&flg=mtd" target="_blank">福彩3D开奖结果(方法排除明细)(测试版)</a> | --%>
+<a id="3d" href="<%=basepath%>/query3D?cpCode=fc3d&flg=3dzx" target="_blank">福彩3D(组选推荐)</a>
 
 </body>
 </html>

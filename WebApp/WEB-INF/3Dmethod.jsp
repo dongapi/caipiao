@@ -49,8 +49,6 @@
 				<td align="center" title="${cp.historyBean_3D.geMsg}">${cp.historyBean_3D.geCode}</td>
 			</tr>
 		</c:forEach>
-		<c:if test="${fn:substring(list[0].expect,8,10) != 85 }">
-		</c:if>
 	</table>
 </div>
 </body>
