@@ -475,7 +475,7 @@ public class CP_3D_Util {
 
 			List<Integer> result = new ArrayList<>(Arrays.asList(NUMS_10_All));
 			
-			String openCodeStr = list.get(current).getOpenCode().replaceAll(",", "");
+			String openCodeStr = list.get(current).getOpenCode().replace(",", "");
 			
 			EliminationUtils eu = new EliminationUtils(openCodeStr);
 			
@@ -576,20 +576,35 @@ public class CP_3D_Util {
 				//詹威方法 开始
 				Map<String, Object> zw = zwff(list,i,tjhmList);
 				list.get(i).setZwhm(zw.get("zwhm").toString().replace(" ", ""));
-//				list.get(i).setHbhm(zw.get("hbhm").toString());
+//				list.get(i).setHbhm(zw.get("hbhm").toString());//放在最下面了
 				String hbhm = zw.get("hbhm").toString().replace(" ", "");
 				list.get(i).setHbCount(zw.get("hbCount").toString());
 				//詹威方法 结束
 				
-				//推荐号码正确 变红
+				//推荐号码正确 单选变红 组选变蓝
 				String tjhm = tjhmList.toString().replace(" ", "");
 				if(i!=0){
 					String[] openCodes1 = list.get(i-1).getOpenCode().split(",");
 					if(tjhm.contains(openCodes1[0]+openCodes1[1]+openCodes1[2])){
-						tjhm = tjhm.replace(openCodes1[0]+openCodes1[1]+openCodes1[2], "<font color='red'>"+openCodes1[0]+openCodes1[1]+openCodes1[2]+"</font>");
+						tjhm = tjhm.replace(openCodes1[0]+openCodes1[1]+openCodes1[2], "<font color='red' style='font-weight:bold;'>"+openCodes1[0]+openCodes1[1]+openCodes1[2]+"</font>");
 					}
 					if(hbhm.contains(openCodes1[0]+openCodes1[1]+openCodes1[2])){
-						hbhm = hbhm.replace(openCodes1[0]+openCodes1[1]+openCodes1[2], "<font color='red'>"+openCodes1[0]+openCodes1[1]+openCodes1[2]+"</font>");
+						hbhm = hbhm.replace(openCodes1[0]+openCodes1[1]+openCodes1[2], "<font color='red' style='font-weight:bold;'>"+openCodes1[0]+openCodes1[1]+openCodes1[2]+"</font>");
+					}
+					if(hbhm.contains(openCodes1[0]+openCodes1[2]+openCodes1[1])){
+						hbhm = hbhm.replace(openCodes1[0]+openCodes1[2]+openCodes1[1], "<font color='blue' style='font-weight:bold;'>"+openCodes1[0]+openCodes1[2]+openCodes1[1]+"</font>");
+					}
+					if(hbhm.contains(openCodes1[1]+openCodes1[0]+openCodes1[2])){
+						hbhm = hbhm.replace(openCodes1[1]+openCodes1[0]+openCodes1[2], "<font color='blue' style='font-weight:bold;'>"+openCodes1[1]+openCodes1[0]+openCodes1[2]+"</font>");
+					}
+					if(hbhm.contains(openCodes1[1]+openCodes1[2]+openCodes1[0])){
+						hbhm = hbhm.replace(openCodes1[1]+openCodes1[2]+openCodes1[0], "<font color='blue' style='font-weight:bold;'>"+openCodes1[1]+openCodes1[2]+openCodes1[0]+"</font>");
+					}
+					if(hbhm.contains(openCodes1[2]+openCodes1[1]+openCodes1[0])){
+						hbhm = hbhm.replace(openCodes1[2]+openCodes1[1]+openCodes1[0], "<font color='blue' style='font-weight:bold;'>"+openCodes1[2]+openCodes1[1]+openCodes1[0]+"</font>");
+					}
+					if(hbhm.contains(openCodes1[2]+openCodes1[0]+openCodes1[1])){
+						hbhm = hbhm.replace(openCodes1[2]+openCodes1[0]+openCodes1[1], "<font color='blue' style='font-weight:bold;'>"+openCodes1[2]+openCodes1[0]+openCodes1[1]+"</font>");
 					}
 				}
 				list.get(i).setDxtjhm(tjhm);
@@ -995,13 +1010,13 @@ public class CP_3D_Util {
 			list1.add("8");
 			list1.add("9");
 			List<String> list2 = new ArrayList<>();
+			String[] oc = code.split(",");
 			if(null != code){
-				String[] oc = code.split(",");
 				for(String str:oc){
-					if(list2.contains(str)){
+					if(list2.contains(str.trim())){
 						continue;
 					}
-					switch (str) {
+					switch (str.trim()) {
 					case "0":
 						list1.remove("0");
 						list1.remove("5");
@@ -1067,58 +1082,70 @@ public class CP_3D_Util {
 			}
 			List<String> zwhm = new ArrayList<>();
 			List<String> hbhm = new ArrayList<>();
-			if(list1.size()==6){
-				for(String aa : list2){
-					for(int i=0;i<list1.size();i++){
-						for(int j=i+1;j<list1.size();j++){
-							zwhm.add(list1.get(i)+list1.get(j)+aa);
-						}
-					}
+			if(oc.length ==3 && oc[0].equals(oc[1]) && oc[0].equals(oc[2])){//豹子号
+				for(int i=0;i<10;i++){
+					zwhm.add(list2.get(0)+list2.get(1)+i);
 				}
 				for(String cc:tjhmList){
-					int conNum6 = 0;
-					int conNum4 = 0;
-					for(String bb:list1){
-						if(cc.contains(bb)){
-							conNum6++;
-						}
-					}
-					for(String dd:list2){
-						if(cc.contains(dd)){
-							conNum4++;
-						}
-					}
-					if(conNum6==2 && conNum4==1){
+					if(cc.contains(list2.get(0)) && cc.contains(list2.get(1))){
 						hbhm.add(cc);
 					}
 				}
-				
-			}else if(list2.size()==6){
-				for(String aa : list1){
-					for(int i=0;i<list2.size();i++){
-						for(int j=i+1;j<list2.size();j++){
-							zwhm.add(list2.get(i)+list2.get(j)+aa);
+			}else{
+				if(list1.size()>list2.size()){
+					for(String aa : list2){
+						for(int i=0;i<list1.size();i++){
+							for(int j=i+1;j<list1.size();j++){
+								zwhm.add(list1.get(i)+list1.get(j)+aa);
+							}
 						}
 					}
-				}
-				for(String cc:tjhmList){
-					int conNum6 = 0;
-					int conNum4 = 0;
-					for(String bb:list2){
-						if(cc.contains(bb)){
-							conNum6++;
+					for(String cc:tjhmList){
+						int conNum6 = 0;
+						int conNum4 = 0;
+						for(String bb:list1){
+							if(cc.contains(bb)){
+								conNum6++;
+							}
+						}
+						for(String dd:list2){
+							if(cc.contains(dd)){
+								conNum4++;
+							}
+						}
+						if(conNum6==2 && conNum4==1){
+							hbhm.add(cc);
 						}
 					}
-					for(String dd:list1){
-						if(cc.contains(dd)){
-							conNum4++;
+					
+				}else if(list2.size()>list1.size()){
+					for(String aa : list1){
+						for(int i=0;i<list2.size();i++){
+							for(int j=i+1;j<list2.size();j++){
+								zwhm.add(list2.get(i)+list2.get(j)+aa);
+							}
 						}
 					}
-					if(conNum6==2 && conNum4==1){
-						hbhm.add(cc);
+					for(String cc:tjhmList){
+						int conNum6 = 0;
+						int conNum4 = 0;
+						for(String bb:list2){
+							if(cc.contains(bb)){
+								conNum6++;
+							}
+						}
+						for(String dd:list1){
+							if(cc.contains(dd)){
+								conNum4++;
+							}
+						}
+						if(conNum6==2 && conNum4==1){
+							hbhm.add(cc);
+						}
 					}
 				}
 			}
+			
 			
 			Map<String, Object> map = new HashMap<>();
 			map.put("zwhm", zwhm.toString());
@@ -1129,81 +1156,6 @@ public class CP_3D_Util {
 		
 		public static void main(String[] args) {
 			
-			List<String> list1 = new ArrayList<>();
-			List<String> list2 = new ArrayList<>();
-			list1.add("0");
-			list1.add("5");
-			list1.add("4");
-			list1.add("9");
-			list2.add("1");
-			list2.add("6");
-			list2.add("2");
-			list2.add("7");
-			list2.add("3");
-			list2.add("8");
-			
-			List<String> zwhm = new ArrayList<>();
-			List<String> hbhm = new ArrayList<>();
-			List<String> tjhmList = new ArrayList<>();
-			tjhmList.add("815");
-			tjhmList.add("407");
-			tjhmList.add("369");
-			tjhmList.add("168");
-			tjhmList.add("449");
-			if(list1.size()==6){
-				for(String aa : list2){
-					for(int i=0;i<list1.size();i++){
-						for(int j=i+1;j<list1.size();j++){
-							zwhm.add(list1.get(i)+list1.get(j)+aa);
-						}
-					}
-				}
-				for(String cc:tjhmList){
-					int conNum6 = 0;
-					int conNum4 = 0;
-					for(String bb:list1){
-						if(cc.contains(bb)){
-							conNum6++;
-						}
-					}
-					for(String dd:list2){
-						if(cc.contains(dd)){
-							conNum4++;
-						}
-					}
-					if(conNum6==2 && conNum4==1){
-						hbhm.add(cc);
-					}
-				}
-			}else if(list2.size()==6){
-				for(String aa : list1){
-					for(int i=0;i<list2.size();i++){
-						for(int j=i+1;j<list2.size();j++){
-							zwhm.add(list2.get(i)+list2.get(j)+aa);
-						}
-					}
-				}
-				for(String cc:tjhmList){
-					int conNum6 = 0;
-					int conNum4 = 0;
-					for(String bb:list2){
-						if(cc.contains(bb)){
-							conNum6++;
-						}
-					}
-					for(String dd:list1){
-						if(cc.contains(dd)){
-							conNum4++;
-						}
-					}
-					if(conNum6==2 && conNum4==1){
-						hbhm.add(cc);
-					}
-				}
-			}
-			System.out.println(zwhm.toString());
-			System.out.println("数量："+zwhm.size());
-			System.out.println(hbhm.toString());
-			System.out.println("数量："+hbhm.size());
+			System.out.println();
 		}
 }

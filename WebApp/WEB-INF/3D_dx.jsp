@@ -13,6 +13,7 @@
 <body>
 <div style="width: 1600px">
 	<h3 style="color: red;">福彩3D开奖结果：</h3>
+	<div><span style="color: red;">* 红色号码-单选中奖号码 ，蓝色号码-组选中奖号码</span></div>
 	<table border="1" cellspacing="0" width="100%">
 		<thead>
 			<tr>
@@ -23,7 +24,7 @@
 				<td align="center" style="white-space:nowrap;">下期个位推荐</td>
 				<td align="center" style="white-space:nowrap;">下期推荐号码(单选)</td>
 				<td align="center" style="white-space:nowrap;">总数</td>
-				<td align="center" style="white-space:nowrap;">64组合号码</td>
+				<td align="center" style="white-space:nowrap;">对码号组合(詹)</td>
 				<td align="center" style="white-space:nowrap;">合并后号码</td>
 				<td align="center" style="white-space:nowrap;">合并后总数</td>
 			</tr>
@@ -37,7 +38,7 @@
 				<td align="center" title="${cp.geResult.msg}">${cp.geResult.list}</td>
 				<td style="word-break:break-all">${cp.dxtjhm}</td>
 				<td align="center"><c:out value="${cp.dxCount}"/></td>
-				<td style="word-break:break-all"><c:out value="${cp.zwhm}"/></td>
+				<td style="word-break:break-all;"><c:out value="${cp.zwhm}"/></td>
 				<td style="word-break:break-all">${cp.hbhm}</td>
 				<td align="center"><c:out value="${cp.hbCount}"/></td>
 			</tr>
